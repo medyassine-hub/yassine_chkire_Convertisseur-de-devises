@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseru de devices</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Convertisseur de Devises</h1>
+        <p class="subtitle">Conversion instantanée avec taux en temps réel</p>
+    </header>
+    <div class="container">
+        <form   id="converterform">
+            <div class="input-group">
+                <label for="amount">Montant à convertir</label>
+                <div class="currency-input">
+                    <input type="number" id="amount" placeholder="Entrez un montant" min="0" step="0.01" required>
+                    <select  id="from-currency">
+                        <option value="EUR">EURO -euro</option>
+                        <option value="USD">USD - Dollar US</option>
+                        <option value="TUN">TUN - dinar</option>
+                        <option value="JPY">JPY - Yen Japonais</option>
+                        <option value="CAD">CAD - Dollar Canadien</option>
+                        <option value="CHF">CHF - Franc Suisse</option>
+                        <option value="AUD">AUD - Dollar Australien</option>
+                    </select>
+                </div>
+            </div>
+        <button type="button" class="swap-btn" id="swapBtn" title="Inverser les devises">⇅</button>
+        <div class="input-group">
+            <label for="toCurrency">Devise cible</label>
+                <select id="toCurrency">
+                    <option value="USD">USD - Dollar US</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - Livre Sterling</option>
+                    <option value="JPY">JPY - Yen Japonais</option>
+                    <option value="CAD">CAD - Dollar Canadien</option>
+                    <option value="CHF">CHF - Franc Suisse</option>
+                    <option value="AUD">AUD - Dollar Australien</option>
+                </select>
+        </div>
+        <div class="actions">
+            <button type="submit" class="convert-btn">Convertir</button>
+            <button type="button" class="save-btn" id="saveBtn">Sauvegarder</button>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
