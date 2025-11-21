@@ -84,3 +84,12 @@ button {
     background: #ff6b4a;
     color: white;
 }
+.result {
+    background: #e7f3ff;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c5aa0;
+}
