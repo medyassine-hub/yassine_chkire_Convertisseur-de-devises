@@ -39,4 +39,28 @@ convertBtn.addEventListener("click",convert);
     let convertedAmount = (amount / rates[from]) * rates[to];
     afficherResultat(amount,from,convertedAmount,to,rates[from])
 }
+let savebtn=document.getElementById("saveBtn");
+let historylist=document.getElementById("historyList");
+function affichehistorique(){
+    let historique=JSON.parse(localStorage.getItem("historique")) || [];
+    historylist.innerHTML="";
+    if (historique.length==0){
+        historylist.innerHTML="<p>Aucune conversion sauvegardée</p>"
+    }
+    historique.forEach(item => {
+        let p=document.createElement("p");
+        p.textContent=item;
+        historyList.appendChild(p);
+    });
+
+};
+savebtn.addEventListener("click",function(){
+    let ResultText=resultDiv.textContent.trim();
+    if (ResultText === "") return;
+    let historique = JSON.parse(localStorage.getItem("historique")) || [];
+    historique.push(ResultText);
+    localStorage.setItem("historique", JSON.stringify(historique));
+    affichehistorique();
+});
+affichehistorique();
 
