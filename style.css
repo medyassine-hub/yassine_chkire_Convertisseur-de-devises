@@ -22,7 +22,7 @@ h1 {
     border-radius: 10px;
     padding: 25px;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
@@ -93,3 +93,33 @@ button {
     font-weight: bold;
     color: #2c5aa0;
 }
+.history {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 700px;
+    margin: 30px auto 0;
+}
+.history h2 {
+    color: #2c5aa0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.history-list {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+.clear-history {
+    display: block;
+    margin: 15px auto 0;
+    padding: 8px 16px;
+    background-color: #ff6b4a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+} 
