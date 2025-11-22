@@ -55,12 +55,19 @@ function affichehistorique(){
 
 };
 savebtn.addEventListener("click",function(){
+    convert();
     let ResultText=resultDiv.textContent.trim();
     if (ResultText === "") return;
     let historique = JSON.parse(localStorage.getItem("historique")) || [];
     historique.push(ResultText);
     localStorage.setItem("historique", JSON.stringify(historique));
     affichehistorique();
+
 });
 affichehistorique();
+let clearbtn=document.getElementById("clearHistory");
+clearbtn.addEventListener("click", function() {
+    localStorage.removeItem("historique");
+    historyList.innerHTML = "<p>Aucune conversion sauvegardée</p>";
+});
 
