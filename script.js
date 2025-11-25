@@ -9,15 +9,6 @@ btn.addEventListener('click',function(){
 });
 let convertBtn = document.getElementById("convert-btn");
 let resultDiv = document.getElementById("result");
-const rates = {
-    EUR: 1,
-    USD: 1.1,
-    TUN: 3.3,
-    JPY: 150,
-    CAD: 1.5,
-    CHF: 1.05,
-    AUD: 1.6
-};
 function afficherResultat(montant, deviseDepart, resultat, deviseCible, taux) {
     let divResultat = document.getElementById("result");
     divResultat.innerHTML = 
@@ -28,17 +19,38 @@ function afficherResultat(montant, deviseDepart, resultat, deviseCible, taux) {
         "</div>";
 }
 convertBtn.addEventListener("click",convert);
- function convert() {
+async function convert() {
     let amount = parseFloat(document.getElementById("amount").value);
     let from = document.getElementById("from-currency").value;
     let to = document.getElementById("toCurrency").value;
+
     if (isNaN(amount)) {
         resultDiv.textContent = "Veuillez entrer un montant valide.";
         return;
     }
-    let convertedAmount = (amount / rates[from]) * rates[to];
-    afficherResultat(amount,from,convertedAmount,to,rates[from])
+
+    try {
+        let response = await fetch(`https://api.exchangerate.host/latest?base=${from}&symbols=${to}`);
+        if (!response.ok) throw new Error("API non disponible");
+
+        let data = await response.json();
+        let rate = data.rates[to];
+
+        if (!rate) {
+            resultDiv.textContent = "Erreur : devise non trouvée dans l'API.";
+            return;
+        }
+
+        let convertedAmount = amount * rate;
+        afficherResultat(amount, from, convertedAmount, to, rate);
+
+    } catch (error) {
+        resultDiv.textContent = "Erreur lors de la récupération des taux.";
+        console.error(error);
+    }
 }
+
+
 let savebtn=document.getElementById("saveBtn");
 let historylist=document.getElementById("historyList");
 function affichehistorique(){
@@ -50,7 +62,7 @@ function affichehistorique(){
     historique.forEach(item => {
         let p=document.createElement("p");
         p.textContent=item;
-        historyList.appendChild(p);
+        historylist.appendChild(p);
     });
 
 };
@@ -68,6 +80,7 @@ affichehistorique();
 let clearbtn=document.getElementById("clearHistory");
 clearbtn.addEventListener("click", function() {
     localStorage.removeItem("historique");
-    historyList.innerHTML = "<p>Aucune conversion sauvegardée</p>";
+    historylist.innerHTML = "<p>Aucune conversion sauvegardée</p>";
 });
+
 
